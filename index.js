@@ -22,13 +22,13 @@ function createPost(post) {
     });
   });
 }
+const promises = async () => {
+  const [postsResolved, lastActivityTime] = await Promise.all([
+    createPost({ title: "Post Five", body: "This is Post Five" }),
+    updateLastUserActivityTime(),
+  ]);
+  console.log(postsResolved);
+  console.log(lastActivityTime);
+};
 
-Promise.all([
-  createPost({ title: "Post Five", body: "This is Post Five" }),
-  updateLastUserActivityTime(),
-]).then(([posts, lastActivityTime]) => {
-  console.log({
-    posts: posts,
-    lastActivityTime: lastActivityTime,
-  });
-});
+promises();
